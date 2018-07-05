@@ -4,32 +4,41 @@
 #include <iostream>
 #include <string.h>
 #include <algorithm>
+#include "definition.h"
 #include "hash_class.h"
 
-#define STBF_NUM 700
+#define K 4
+#define STBF_NUM 500000
 
 class Recent_Sketch{
 public :
     unsigned int clock_pos;
     unsigned int len;
     unsigned int step;
-    unsigned long long int last_time;
+    unsigned int cycle_num;
     int row_length;
     int hash_number;
+    unsigned long long int last_time;
 
-    Recent_Sketch(unsigned int c, unsigned int l, int _row_length, int _hash_number):len(l),step(l/c),row_length(_row_length),hash_number(_hash_number){
+    Recent_Sketch(unsigned int c, unsigned int l, int _row_length, int _hash_number):
+        len(l),step(l*(K-1)/c),row_length(_row_length),hash_number(_hash_number){
         clock_pos = 0;
         last_time = 0;
+        cycle_num = 0;
     }
+    int Mid(int *num);
 };
 
 class Recent_Counter: public Recent_Sketch{
 public:
     struct Unit{
-        int future;
-        int now;
-        unsigned int Total(){
-            return abs(future) + abs(now);
+        int count[K];
+        int Total(){
+            int ret = 0;
+            for(int i = 0;i < K;++i){
+                ret += count[i];
+            }
+            return ret;
         }
     };
     Unit* counter;
