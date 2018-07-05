@@ -8,7 +8,7 @@
 #include "hash_class.h"
 
 #define K 4
-#define STBF_NUM 500000
+
 
 class Recent_Sketch{
 public :
