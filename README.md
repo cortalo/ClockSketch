@@ -13,3 +13,13 @@ This repo contains all the algorithms in our experiments, as shown in the follow
 | Membership query          | Sliding Bloom Filter |
 | Estimating item frequency | Sliding CM Sketch, Sliding CM-CU Sketch. Sliding Count Sketch |
 | Finding heavy hitter      | Sliding HeavyKeeper             |
+
+### How to build
+
+The project is built upon [cmake](https://cmake.org/). You can use the following commands to build and run.
+
+```
+mkdir build
+cd build
+make
+```
